@@ -4,14 +4,14 @@
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  /* Color Palette */
-  --bg-primary: #060a13;
-  --bg-secondary: #0d1321;
-  --bg-tertiary: #131b2e;
+  /* Color Palette - Dark Dynamic 2.0 */
+  --bg-primary: #030508;
+  --bg-secondary: #0a0e17;
+  --bg-tertiary: #111724;
 
-  --text-primary: #f0f4f8;
-  --text-secondary: #8899b0;
-  --text-muted: #5a6b80;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
 
   --accent-cyan: #06d6a0;
   --accent-blue: #0ea5e9;
@@ -22,10 +22,10 @@
   --gradient-secondary: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
   --gradient-hero: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
 
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-bg-hover: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-border-hover: rgba(255, 255, 255, 0.12);
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-bg-hover: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.04);
+  --glass-border-hover: rgba(255, 255, 255, 0.1);
 
   /* Typography */
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;

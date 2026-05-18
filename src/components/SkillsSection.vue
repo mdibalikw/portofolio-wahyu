@@ -13,16 +13,18 @@
         </p>
       </div>
 
-      <div class="skills-grid">
+      <div class="skills-grid" @mousemove="handleMouseMove">
         <div
           v-for="(skill, index) in skills"
           :key="skill.title"
           class="skill-card"
           :class="{ visible: cardVisible[index] }"
           :ref="el => setCardRef(el, index)"
-          @mouseenter="hoveredCard = index"
-          @mouseleave="hoveredCard = null"
         >
+          <!-- Spotlight Border & Background (Dynamic 2.0) -->
+          <div class="spotlight-border"></div>
+          <div class="spotlight-bg"></div>
+
           <div class="card-glow" :style="{ background: skill.glowColor }"></div>
           <div class="card-content">
             <div class="card-icon" :style="{ color: skill.iconColor }">
@@ -167,7 +169,17 @@ const headerRef = ref(null)
 const headerVisible = ref(false)
 const cardVisible = ref(skills.map(() => false))
 const cardRefs = ref([])
-const hoveredCard = ref(null)
+
+function handleMouseMove(e) {
+  for (const card of cardRefs.value) {
+    if (!card) continue;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  }
+}
 
 function setCardRef(el, index) {
   if (el) cardRefs.value[index] = el
@@ -285,15 +297,28 @@ onMounted(() => {
 /* Skill Card */
 .skill-card {
   position: relative;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.015);
+  border-radius: 24px;
   overflow: hidden;
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.6s var(--ease-out-expo),
-              border-color 0.3s ease,
-              box-shadow 0.3s ease;
+  transition: all 0.6s var(--ease-out-expo), transform 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.skill-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: rgba(255, 255, 255, 0.04);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .skill-card.visible {
@@ -302,9 +327,46 @@ onMounted(() => {
 }
 
 .skill-card:hover {
-  border-color: var(--glass-border-hover);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Spotlight Dynamic 2.0 */
+.spotlight-border {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+    rgba(255, 255, 255, 0.25),
+    transparent 40%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.spotlight-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+    rgba(255, 255, 255, 0.03),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.skills-grid:hover .spotlight-border,
+.skills-grid:hover .spotlight-bg {
+  opacity: 1;
 }
 
 .card-glow {
