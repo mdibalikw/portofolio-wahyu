@@ -6,9 +6,7 @@
           <span class="footer-logo">MW<span class="dot">.</span></span>
         </div>
         <p class="footer-text">
-          &copy; {{ currentYear }} Muhammad Wahyu. Dibuat dengan
-          <span class="heart">♥</span>
-          menggunakan Vue.js
+          &copy; {{ currentYear }} Muhammad Wahyu.
         </p>
       </div>
     </div>
