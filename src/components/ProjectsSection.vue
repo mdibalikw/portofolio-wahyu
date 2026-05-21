@@ -6,7 +6,7 @@
           <span class="tag-icon">◆</span> Portofolio
         </span>
         <h2 class="section-title" :class="{ visible: headerVisible }">
-          Proyek <span class="gradient-text">Unggulan</span>
+           <span class="gradient-text">Proyek</span>
         </h2>
         <p class="section-subtitle" :class="{ visible: headerVisible }">
           Beberapa proyek yang mencerminkan pengalaman dan kemampuan teknis saya
