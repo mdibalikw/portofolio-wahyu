@@ -129,7 +129,7 @@ const skills = [
   },
   {
     title: 'Sistem Enterprise & ECM',
-    tags: ['OpenText OTCS', 'AppWorks', 'M-Files'],
+    tags: ['OpenText OTCS', 'M-Files'],
     level: 85,
     icon: ServerIcon,
     iconColor: '#0ea5e9',

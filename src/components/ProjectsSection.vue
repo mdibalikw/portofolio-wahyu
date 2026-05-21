@@ -33,22 +33,39 @@
             <div class="card-header">
               <div class="project-number">{{ String(index + 1).padStart(2, '0') }}</div>
               <div class="project-icon" :style="{ color: project.iconColor }">
-                <svg v-if="index === 0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                <!-- Dashboard Icon -->
+                <svg v-if="project.icon === 'dashboard'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="9" y1="17" x2="9" y2="10"/>
+                  <line x1="15" y1="17" x2="15" y2="12"/>
+                  <line x1="12" y1="17" x2="12" y2="7"/>
+                </svg>
+                <!-- Folder Icon -->
+                <svg v-else-if="project.icon === 'folder'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                  <line x1="12" y1="11" x2="12" y2="17"/>
+                  <line x1="9" y1="14" x2="15" y2="14"/>
+                </svg>
+                <!-- File/Document Icon -->
+                <svg v-else-if="project.icon === 'file'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                   <polyline points="14 2 14 8 20 8"/>
                   <line x1="16" y1="13" x2="8" y2="13"/>
                   <line x1="16" y1="17" x2="8" y2="17"/>
                 </svg>
-                <svg v-else-if="index === 1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                <!-- Book Icon -->
+                <svg v-else-if="project.icon === 'book'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
                   <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
                 </svg>
-                <svg v-else-if="index === 2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                <!-- Chat Icon -->
+                <svg v-else-if="project.icon === 'chat'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                <!-- Default Code Icon -->
+                <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
                   <polyline points="16 18 22 12 16 6"/>
                   <polyline points="8 6 2 12 8 18"/>
-                </svg>
-                <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                 </svg>
               </div>
             </div>
@@ -96,34 +113,37 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const projects = [
   {
-    title: 'Pengembangan Sistem ECM & Manajemen HR',
-    description: 'Merancang dan mengonfigurasi sistem manajemen SDM multi-kelas menggunakan M-Files, serta mengatur Retention Schedule Information dan sistem Manajemen Arsip (Records Management) di OpenText Content Server.',
-    tags: ['M-Files', 'OpenText OTCS', 'Records Mgmt'],
+    title: 'Dashboard Pelaporan Real-Time M-Files (MFWS)',
+    description: 'Mesin dashboard pelaporan berbasis konfigurasi real-time yang terhubung langsung ke REST API M-Files Web Service (MFWS). Menampilkan visualisasi data vault menggunakan grafik interaktif modern, dengan penelusuran metadata rekursif paralel (Promise-based), caching in-memory, dan pencegahan token storm.',
+    tags: ['Node.js', 'Vue 3', 'Tailwind CSS', 'M-Files API', 'Express'],
     accent: 'linear-gradient(180deg, #06d6a0, transparent)',
     iconColor: '#06d6a0',
     tagBorder: 'rgba(6, 214, 160, 0.25)',
     tagColor: '#06d6a0',
-    dots: ['#06d6a0', '#0ea5e9', '#8b5cf6']
+    dots: ['#06d6a0', '#0ea5e9', '#8b5cf6', '#f59e0b'],
+    icon: 'dashboard'
   },
   {
-    title: 'Aplikasi Web Manajemen Buku (Full-Stack)',
-    description: 'Membangun sistem manajemen buku end-to-end yang mencakup perancangan API (CRUD), konfigurasi CORS, dan implementasi antarmuka pengguna yang responsif.',
-    tags: ['Laravel', 'Vue.js', 'REST API'],
+    title: 'Taxonomy Auto-Provisioning Admin Panel',
+    description: 'Mini-aplikasi berbasis Node.js (Express) dan Vanilla JS (UI) untuk melakukan auto-provisioning (pembuatan taksonomi/folder massal) ke OpenText Content Server melalui REST API. Dilengkapi manajemen autentikasi in-memory browser yang aman.',
+    tags: ['Node.js', 'Express', 'Vanilla JS', 'OpenText API', 'Glassmorphism'],
     accent: 'linear-gradient(180deg, #0ea5e9, transparent)',
     iconColor: '#0ea5e9',
     tagBorder: 'rgba(14, 165, 233, 0.25)',
     tagColor: '#0ea5e9',
-    dots: ['#0ea5e9', '#06d6a0', '#f59e0b']
+    dots: ['#0ea5e9', '#8b5cf6', '#06d6a0', '#ef4444'],
+    icon: 'folder'
   },
   {
-    title: 'Sistem Proses Aplikasi Kredit & Otomatisasi',
-    description: 'Membangun proses aplikasi kredit dengan pemodelan BPMN dan merancang alur kerja otomatisasi persetujuan. Menggunakan n8n untuk integrasi Intelligent Document Processing (IDP) dan ekstraksi OCR.',
-    tags: ['AppWorks', 'n8n', 'BPMN', 'IDP'],
+    title: 'Pengembangan Sistem ECM & Manajemen HR',
+    description: 'Merancang dan mengonfigurasi sistem manajemen SDM multi-kelas menggunakan M-Files, serta mengatur Retention Schedule Information dan sistem Manajemen Arsip (Records Management) di OpenText Content Server.',
+    tags: ['M-Files', 'OpenText OTCS', 'Records Mgmt'],
     accent: 'linear-gradient(180deg, #8b5cf6, transparent)',
     iconColor: '#8b5cf6',
     tagBorder: 'rgba(139, 92, 246, 0.25)',
     tagColor: '#8b5cf6',
-    dots: ['#8b5cf6', '#ec4899', '#0ea5e9', '#06d6a0']
+    dots: ['#8b5cf6', '#0ea5e9', '#06d6a0'],
+    icon: 'file'
   },
   {
     title: 'Aplikasi Virtual Chat AI Kustom',
@@ -133,7 +153,19 @@ const projects = [
     iconColor: '#ec4899',
     tagBorder: 'rgba(236, 72, 153, 0.25)',
     tagColor: '#ec4899',
-    dots: ['#ec4899', '#8b5cf6', '#06d6a0']
+    dots: ['#ec4899', '#8b5cf6', '#06d6a0'],
+    icon: 'chat'
+  },
+  {
+    title: 'Aplikasi Web Manajemen Buku (Full-Stack)',
+    description: 'Membangun sistem manajemen buku end-to-end yang mencakup perancangan API (CRUD), konfigurasi CORS, dan implementasi antarmuka pengguna yang responsif.',
+    tags: ['Laravel', 'Vue.js', 'REST API'],
+    accent: 'linear-gradient(180deg, #f59e0b, transparent)',
+    iconColor: '#f59e0b',
+    tagBorder: 'rgba(245, 158, 11, 0.25)',
+    tagColor: '#f59e0b',
+    dots: ['#f59e0b', '#06d6a0', '#0ea5e9'],
+    icon: 'book'
   }
 ]
 
