@@ -117,6 +117,17 @@ const ChipIcon = markRaw({
   }
 })
 
+const GitIcon = markRaw({
+  render() {
+    return h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', width: '32', height: '32' }, [
+      h('line', { x1: '6', y1: '3', x2: '6', y2: '15' }),
+      h('circle', { cx: '18', cy: '6', r: '3' }),
+      h('circle', { cx: '6', cy: '18', r: '3' }),
+      h('path', { d: 'M18 9a9 9 0 0 1-9 9' })
+    ])
+  }
+})
+
 const skills = [
   {
     title: 'Pengembangan Web',
@@ -162,6 +173,15 @@ const skills = [
     iconColor: '#ec4899',
     glowColor: 'rgba(236, 72, 153, 0.06)',
     gradient: 'linear-gradient(90deg, #ec4899, #06d6a0)'
+  },
+  {
+    title: 'Version Control & Kolaborasi',
+    tags: ['Git', 'GitHub', 'GitLab'],
+    level: 85,
+    icon: GitIcon,
+    iconColor: '#f05032',
+    glowColor: 'rgba(240, 80, 50, 0.06)',
+    gradient: 'linear-gradient(90deg, #f05032, #f97316)'
   }
 ]
 
