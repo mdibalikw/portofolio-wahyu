@@ -62,6 +62,13 @@
                 <svg v-else-if="project.icon === 'chat'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                 </svg>
+                <!-- Helpdesk Icon -->
+                <svg v-else-if="project.icon === 'helpdesk'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                  <path d="M18.364 5.636a9 9 0 0 1 0 12.728M5.636 18.364a9 9 0 0 1 0-12.728"/>
+                  <path d="M12 2v2m0 16v2M2 12h2m16 0h2"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="12" cy="12" r="1"/>
+                </svg>
                 <!-- Default Code Icon -->
                 <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
                   <polyline points="16 18 22 12 16 6"/>
@@ -166,6 +173,17 @@ const projects = [
     tagColor: '#f59e0b',
     dots: ['#f59e0b', '#06d6a0', '#0ea5e9'],
     icon: 'book'
+  },
+  {
+    title: 'IT Helpdesk Aplikasi ECM',
+    description: 'Menyediakan dukungan teknis level 1 & 2 untuk pengguna aplikasi Enterprise Content Management (OpenText Content Server & M-Files). Meliputi troubleshooting akses dokumen, konfigurasi workspace/permission, eskalasi bug, serta pelatihan end-user terkait workflow dan metadata management.',
+    tags: ['OpenText OTCS', 'M-Files', 'User Support', 'Incident Management'],
+    accent: 'linear-gradient(180deg, #14b8a6, transparent)',
+    iconColor: '#14b8a6',
+    tagBorder: 'rgba(20, 184, 166, 0.25)',
+    tagColor: '#14b8a6',
+    dots: ['#14b8a6', '#0ea5e9', '#8b5cf6', '#f59e0b'],
+    icon: 'helpdesk'
   }
 ]
 
