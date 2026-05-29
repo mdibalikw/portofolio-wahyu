@@ -19,7 +19,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /public_html/ # Tujuan folder di hosting disesuaikan dengan kotak biru
+        server-dir: /portofolio.mwahyu.my.id/ # Tujuan folder di hosting disesuaikan dengan kotak biru
         
         # ─── TAMBAHKAN OPSI DI BAWAH INI UNTUK MENANGGULANGI ECONNRESET ───
         protocol: ftp          # Memaksa koneksi menggunakan FTP aman (SSL/TLS)
