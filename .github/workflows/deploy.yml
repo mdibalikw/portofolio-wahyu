@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/        # upload hasil build saja
-          server-dir: portofolio.mwahyu.my.id/  # tujuan di cPanel
+          server-dir: public_html/  # tujuan di cPanel
           protocol: ftps
           port: 21
           timeout: 120000
