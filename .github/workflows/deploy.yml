@@ -33,10 +33,6 @@ jobs:
           **/.git*/**
           **/.github/**
           
-          # --- File Custom Anda ---
-          config/koneksi.php
-          sekolah.docx
-          backups/**
           
           # --- Tambahan dari .gitignore ---
           node_modules/**
