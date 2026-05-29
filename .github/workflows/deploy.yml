@@ -37,11 +37,12 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/          # Upload isi folder dist/
-          server-dir: /public_html/   # Tujuan di cPanel
-          protocol: ftps
+          local-dir: ./dist/
+          server-dir: public_html/    # tanpa leading slash untuk cPanel
+          protocol: ftp               # coba ftp biasa dulu (bukan ftps)
           port: 21
-          timeout: 60000
+          timeout: 120000
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**
