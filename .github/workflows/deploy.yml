@@ -1,61 +1,60 @@
-name: Build & Deploy to cPanel
+name: Deploy Website
 
 on:
   push:
     branches:
-      - main
+      - main  # Ganti dengan 'master' jika branch utamamu bernama master
 
 jobs:
-  build-and-deploy:
-    name: Build & Deploy
+  web-deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Checkout source code
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    - name: Get latest code
+      uses: actions/checkout@v4
+    
+    - name: Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /public_html/ # Tujuan folder di hosting disesuaikan dengan kotak biru
+        
+        # ─── TAMBAHKAN OPSI DI BAWAH INI UNTUK MENANGGULANGI ECONNRESET ───
+        protocol: ftps          # Memaksa koneksi menggunakan FTP aman (SSL/TLS)
+        port: 21                # Gunakan port 21 (atau 990 jika hostingmu pakai implicit FTPS)
+        timeout: 60000          # Menambah batas waktu tunggu respons server (60 detik)
+        # ──────────────────────────────────────────────────────────────────
 
-      # 2. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      # 3. Install dependencies
-      - name: Install Dependencies
-        run: npm ci
-
-      # 4. Build Vue app (output ke folder dist/)
-      - name: Build Vue App
-        run: npm run build
-
-      # 5. Debug: Test koneksi FTP dulu
-      - name: Debug FTP Connection
-        run: |
-          echo "=== Testing FTP connection ==="
-          echo "Server: ${{ secrets.FTP_SERVER }}"
-          echo "Username: ${{ secrets.FTP_USERNAME }}"
-          curl -v --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
-            "ftp://${{ secrets.FTP_SERVER }}/" \
-            --connect-timeout 30 \
-            --max-time 30 2>&1 | head -50 || true
-          echo "=== End FTP Test ==="
-
-      # 6. Deploy folder dist/ ke public_html cPanel via FTP
-      - name: Deploy to cPanel via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: public_html/
-          protocol: ftps
-          port: 21
-          timeout: 120000
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+        exclude: |
+          # --- Pengaturan Bawaan Git & GitHub ---
+          **/.git*
+          **/.git*/**
+          **/.github/**
+          
+          # --- File Custom Anda ---
+          config/koneksi.php
+          sekolah.docx
+          backups/**
+          
+          # --- Tambahan dari .gitignore ---
+          node_modules/**
+          dist/**
+          .vscode/**
+          .idea/**
+          **/*.suo
+          **/*.ntvs*
+          **/*.njsproj
+          **/*.sln
+          **/*.sw?
+          **/.DS_Store
+          **/Thumbs.db
+          **/*.log
+          npm-debug.log*
+          .env
+          .env.local
+          .env.*.local
+          
+          # --- Folder Bawaan cPanel (Penting) ---
+          cgi-bin/**
