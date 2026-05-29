@@ -51,7 +51,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: public_html/
-          protocol: ftp
+          protocol: ftps
           port: 21
           timeout: 120000
           dangerous-clean-slate: false
