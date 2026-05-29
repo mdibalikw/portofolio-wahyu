@@ -22,7 +22,7 @@ jobs:
         server-dir: /public_html/ # Tujuan folder di hosting disesuaikan dengan kotak biru
         
         # ─── TAMBAHKAN OPSI DI BAWAH INI UNTUK MENANGGULANGI ECONNRESET ───
-        protocol: ftps          # Memaksa koneksi menggunakan FTP aman (SSL/TLS)
+        protocol: ftp          # Memaksa koneksi menggunakan FTP aman (SSL/TLS)
         port: 21                # Gunakan port 21 (atau 990 jika hostingmu pakai implicit FTPS)
         timeout: 60000          # Menambah batas waktu tunggu respons server (60 detik)
         # ──────────────────────────────────────────────────────────────────
