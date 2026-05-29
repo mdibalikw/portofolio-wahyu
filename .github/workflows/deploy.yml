@@ -1,60 +1,48 @@
-name: Deploy Website
+name: Build & Deploy to cPanel
 
 on:
   push:
     branches:
-      - main  # Ganti dengan 'master' jika branch utamamu bernama master
+      - main
 
 jobs:
-  web-deploy:
-    name: Deploy
+  build-and-deploy:
+    name: Build & Deploy
     runs-on: ubuntu-latest
-    steps:
-    - name: Get latest code
-      uses: actions/checkout@v4
-    
-    - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /portofolio.mwahyu.my.id/ # Tujuan folder di hosting disesuaikan dengan kotak biru
-        
-        # ─── TAMBAHKAN OPSI DI BAWAH INI UNTUK MENANGGULANGI ECONNRESET ───
-        protocol: ftp          # Memaksa koneksi menggunakan FTP aman (SSL/TLS)
-        port: 21                # Gunakan port 21 (atau 990 jika hostingmu pakai implicit FTPS)
-        timeout: 60000          # Menambah batas waktu tunggu respons server (60 detik)
-        # ──────────────────────────────────────────────────────────────────
 
-        exclude: |
-          # --- Pengaturan Bawaan Git & GitHub ---
-          **/.git*
-          **/.git*/**
-          **/.github/**
-          
-          # --- File Custom Anda ---
-          config/koneksi.php
-          sekolah.docx
-          backups/**
-          
-          # --- Tambahan dari .gitignore ---
-          node_modules/**
-          dist/**
-          .vscode/**
-          .idea/**
-          **/*.suo
-          **/*.ntvs*
-          **/*.njsproj
-          **/*.sln
-          **/*.sw?
-          **/.DS_Store
-          **/Thumbs.db
-          **/*.log
-          npm-debug.log*
-          .env
-          .env.local
-          .env.*.local
-          
-          # --- Folder Bawaan cPanel (Penting) ---
-          cgi-bin/**
+    steps:
+      # 1. Checkout source code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 3. Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # 4. Build Vue app → output ke folder dist/
+      - name: Build Vue App
+        run: npm run build
+
+      # 5. Deploy folder dist/ ke public_html via FTPS
+      - name: Deploy to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/        # upload hasil build saja
+          server-dir: public_html/  # tujuan di cPanel
+          protocol: ftps
+          port: 21
+          timeout: 120000
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
