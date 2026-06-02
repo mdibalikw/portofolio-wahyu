@@ -131,7 +131,7 @@ const projects = [
   {
     title: 'ZApps POS Demo',
     description: 'Aplikasi Point of Sales (POS) komprehensif berbasis web untuk manajemen kasir, inventaris, dan pelaporan transaksi secara real-time.',
-    link: 'https://www.zappspos.my.id',
+    link: 'https://zappspos.mwahyu.my.id/',
     tags: ['Vue.js', 'Laravel', 'Tailwind CSS'],
     accent: 'linear-gradient(180deg, #3b82f6, transparent)',
     iconColor: '#3b82f6',
