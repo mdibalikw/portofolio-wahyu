@@ -93,6 +93,15 @@
             <h3 class="project-title">{{ project.title }}</h3>
             <p class="project-desc">{{ project.description }}</p>
 
+            <a v-if="project.link" :href="project.link" target="_blank" class="project-link" :style="{ color: project.iconColor }">
+              Kunjungi Demo
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+
             <!-- Footer -->
             <div class="card-footer">
               <div class="tech-stack">
@@ -119,6 +128,18 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const projects = [
+  {
+    title: 'ZApps POS Demo',
+    description: 'Aplikasi Point of Sales (POS) komprehensif berbasis web untuk manajemen kasir, inventaris, dan pelaporan transaksi secara real-time.',
+    link: 'https://www.zappspos.my.id',
+    tags: ['Vue.js', 'Laravel', 'Tailwind CSS'],
+    accent: 'linear-gradient(180deg, #3b82f6, transparent)',
+    iconColor: '#3b82f6',
+    tagBorder: 'rgba(59, 130, 246, 0.25)',
+    tagColor: '#3b82f6',
+    dots: ['#3b82f6', '#06d6a0', '#f59e0b'],
+    icon: 'dashboard'
+  },
   {
     title: 'Dashboard Pelaporan Real-Time M-Files (MFWS)',
     description: 'Mesin dashboard pelaporan berbasis konfigurasi real-time yang terhubung langsung ke REST API M-Files Web Service (MFWS). Menampilkan visualisasi data vault menggunakan grafik interaktif modern, dengan penelusuran metadata rekursif paralel (Promise-based), caching in-memory, dan pencegahan token storm.',
@@ -467,7 +488,22 @@ onMounted(() => {
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.7;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.project-link:hover {
+  opacity: 0.7;
 }
 
 /* Footer */
