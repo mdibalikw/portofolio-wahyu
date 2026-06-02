@@ -130,7 +130,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const projects = [
   {
     title: 'ZApps POS Demo',
-    description: 'Aplikasi Point of Sales (POS) komprehensif berbasis web untuk manajemen kasir, inventaris, dan pelaporan transaksi secara real-time.',
+    description: 'Aplikasi Point of Sales (POS) komprehensif dengan fitur kasir lengkap: scan barcode produk, penyesuaian mode harga (normal/grosir/pack), kontrol keranjang belanja, metode bayar (Tunai & QRIS), hingga pengiriman struk via WhatsApp dan cetak (HTML/PDF).',
     link: 'https://zappspos.mwahyu.my.id/',
     tags: ['Vue.js', 'Laravel', 'Tailwind CSS'],
     accent: 'linear-gradient(180deg, #3b82f6, transparent)',
