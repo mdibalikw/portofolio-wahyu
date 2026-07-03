@@ -129,6 +129,17 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const projects = [
   {
+    title: 'B2B ITSM Ticketing System',
+    description: 'Sistem ticketing untuk manajemen IT Service Management (ITSM) berbasis B2B. Backend dibangun dengan Spring Boot dan PostgreSQL, mendukung JWT Authentication, Role-Based Access Control (RBAC) dengan empat tingkat role (ADMIN, SUPPORT, TECHNICAL_SUPPORT, USER), alur eskalasi tiket Tier 1 → Tier 2, serta Real-time Chat via WebSocket.',
+    tags: ['Spring Boot', 'PostgreSQL', 'WebSocket', 'JWT'],
+    accent: 'linear-gradient(180deg, #10b981, transparent)',
+    iconColor: '#10b981',
+    tagBorder: 'rgba(16, 185, 129, 0.25)',
+    tagColor: '#10b981',
+    dots: ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6'],
+    icon: 'helpdesk'
+  },
+  {
     title: 'ZApps POS Demo',
     description: 'Aplikasi Point of Sales (POS) komprehensif dengan fitur kasir lengkap: scan barcode produk, penyesuaian mode harga (normal/grosir/pack), kontrol keranjang belanja, metode bayar (Tunai & QRIS), hingga pengiriman struk via WhatsApp dan cetak (HTML/PDF).',
     link: 'https://zappspos.mwahyu.my.id/',
