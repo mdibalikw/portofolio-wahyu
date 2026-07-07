@@ -139,7 +139,7 @@ const HelpdeskIcon = markRaw({
 const skills = [
   {
     title: 'Pengembangan Web',
-    tags: ['Laravel', 'Vue.js', 'WordPress', 'Elementor'],
+    tags: ['Laravel', 'Vue.js', 'Java', 'Spring Boot', 'WordPress', 'Elementor'],
     level: 90,
     icon: CodeIcon,
     iconColor: '#06d6a0',
