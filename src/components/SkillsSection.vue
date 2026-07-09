@@ -165,13 +165,23 @@ const skills = [
     gradient: 'linear-gradient(90deg, #8b5cf6, #ec4899)'
   },
   {
-    title: 'Basis Data & Infrastruktur',
-    tags: ['SQL Server', 'Database Admin', 'DevOps'],
+    title: 'RDBMS',
+    tags: ['MSSQL Server', 'MySql','Laragon','PostgreSQL' ],
     level: 85,
     icon: DatabaseIcon,
     iconColor: '#f59e0b',
     glowColor: 'rgba(245, 158, 11, 0.06)',
     gradient: 'linear-gradient(90deg, #f59e0b, #ef4444)'
+  },
+
+    {
+    title: 'Database',
+    tags: ['T-Sql', 'Store Procedure','Agent SQL' ],
+    level: 85,
+    icon: DatabaseIcon,
+    iconColor: '#849b5aff',
+    glowColor: 'rgba(140, 192, 8, 0.06)',
+    gradient: 'linear-gradient(90deg, #849b5aff, #621818ff)'
   },
   {
     title: 'AI & Python',
