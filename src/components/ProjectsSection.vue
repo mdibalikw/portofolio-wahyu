@@ -129,6 +129,61 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const projects = [
   {
+    title: 'Sistem Otomatisasi Reminder Terjadwal',
+    description: 'Sistem otomatisasi pengingat (reminder) terjadwal. Secara otomatis mengirimkan notifikasi pengingat via email untuk memastikan tugas atau tenggat waktu tidak terlewat, mengurangi pekerjaan manual, dan meningkatkan efisiensi operasional.',
+    tags: ['n8n', 'Google Spreadsheet', 'Gmail'],
+    accent: 'linear-gradient(180deg, #3b82f6, transparent)',
+    iconColor: '#3b82f6',
+    tagBorder: 'rgba(59, 130, 246, 0.25)',
+    tagColor: '#3b82f6',
+    dots: ['#3b82f6', '#10b981', '#f59e0b'],
+    icon: 'dashboard'
+  },
+  {
+    title: 'Otomatisasi Generate Konten AI',
+    description: 'Sistem otomatisasi pembuatan konten berbasis AI. Menghasilkan draf konten materi secara otomatis dengan memanfaatkan LLM (Groq, Gemini), kemudian mendistribusikan dan mengirimkan notifikasi konten tersebut secara berkala sebagai pengingat.',
+    tags: ['n8n', 'Google Spreadsheet', 'Gmail', 'AI LLM'],
+    accent: 'linear-gradient(180deg, #ec4899, transparent)',
+    iconColor: '#ec4899',
+    tagBorder: 'rgba(236, 72, 153, 0.25)',
+    tagColor: '#ec4899',
+    dots: ['#ec4899', '#8b5cf6', '#3b82f6'],
+    icon: 'chat'
+  },
+  {
+    title: 'Klasifikasi Dokumen Identitas (OCR)',
+    description: 'Otomatisasi penyortiran dokumen identitas (NPWP, KTP, Kartu Keluarga). Menggunakan teknologi OCR Capture berbasis AI untuk mengekstrak data dari gambar secara otomatis, kemudian mengklasifikasikan dan menyimpannya secara terstruktur ke dalam database.',
+    tags: ['n8n', 'Google Drive', 'SQL Server', 'AI OCR'],
+    accent: 'linear-gradient(180deg, #f59e0b, transparent)',
+    iconColor: '#f59e0b',
+    tagBorder: 'rgba(245, 158, 11, 0.25)',
+    tagColor: '#f59e0b',
+    dots: ['#f59e0b', '#0ea5e9', '#10b981'],
+    icon: 'folder'
+  },
+  {
+    title: 'Deteksi Dokumen Data Pribadi (PDP)',
+    description: 'Sistem pendeteksi Perlindungan Data Pribadi (PDP) pada dokumen sensitif seperti Perjanjian Kerja Sama (PKS) dan Invoice. Memindai dan mengekstrak informasi privat menggunakan OCR Capture untuk memastikan kepatuhan dan standar keamanan data.',
+    tags: ['n8n', 'Google Drive', 'SQL Server', 'AI OCR', 'Vue.js'],
+    accent: 'linear-gradient(180deg, #ef4444, transparent)',
+    iconColor: '#ef4444',
+    tagBorder: 'rgba(239, 68, 68, 0.25)',
+    tagColor: '#ef4444',
+    dots: ['#ef4444', '#f59e0b', '#8b5cf6'],
+    icon: 'file'
+  },
+  {
+    title: 'Registrasi Otomatis & Generate QR Code',
+    description: 'Alur otomatisasi pendaftaran pengguna baru. Sistem secara otomatis memproses data registrasi dari pengguna, membuat kode QR (QR Code) unik sebagai tiket identitas, dan mengirimkan notifikasi pendaftaran sukses beserta QR tersebut melalui email.',
+    tags: ['n8n', 'Spreadsheet', 'SQL Server', 'QRServer', 'Gmail'],
+    accent: 'linear-gradient(180deg, #10b981, transparent)',
+    iconColor: '#10b981',
+    tagBorder: 'rgba(16, 185, 129, 0.25)',
+    tagColor: '#10b981',
+    dots: ['#10b981', '#3b82f6', '#8b5cf6'],
+    icon: 'helpdesk'
+  },
+  {
     title: 'B2B ITSM Ticketing System',
     description: 'Sistem ticketing untuk manajemen IT Service Management (ITSM) berbasis B2B. Backend dibangun dengan Spring Boot dan PostgreSQL, mendukung JWT Authentication, Role-Based Access Control (RBAC) dengan empat tingkat role (ADMIN, SUPPORT, TECHNICAL_SUPPORT, USER), alur eskalasi tiket Tier 1 → Tier 2, serta Real-time Chat via WebSocket.',
     tags: ['Spring Boot', 'PostgreSQL', 'WebSocket', 'JWT'],
